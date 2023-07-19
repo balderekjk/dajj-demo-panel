@@ -1,16 +1,15 @@
-version: '3.0'
+version: '3.8'
 
 services:
   grafana:
-    container_name: 'dajj-testdemo-panel'
-    build:
-      context: ./.config
-      args:
-        grafana_image: ${GRAFANA_IMAGE:-grafana/grafana}
-        grafana_version: ${GRAFANA_VERSION:-7.0.0}
-    image: grafana/grafana:7.0.0
+    container_name: dajj-testdemo-panel
+
+    image: grafana/grafana-enterprise
+
+    restart: unless-stopped
+
     ports:
-      - 3050:3000/tcp
+      - '3050:3000'
+
     volumes:
-      - ./dist:/var/lib/grafana/plugins/dajj-testdemo-panel
-      - ./provisioning:/etc/grafana/provisioning
+      - /home/dbal/plugins:/var/lib/grafana/plugins
