@@ -6,8 +6,9 @@ services:
     build:
       context: ./.config
       args:
-        grafana_image: ${GRAFANA_IMAGE:-grafana/grafana:7.0.0}
+        grafana_image: ${GRAFANA_IMAGE:-grafana/grafana}
         grafana_version: ${GRAFANA_VERSION:-7.0.0}
+    image: ${grafana_image}:${grafana_version}
     ports:
       - 3050:3000/tcp
     volumes:
